@@ -17,6 +17,8 @@ namespace CSharpModelClassGenerator
             var classNode = classMap[selectedClass];
             var codeBuilder = new StringBuilder();
 
+            codeBuilder.AppendLine($"namespace {classNode.Namespace};");
+
             // Genera la dichiarazione della classe
             codeBuilder.AppendLine($"public class {selectedClass}");
             codeBuilder.AppendLine("{");

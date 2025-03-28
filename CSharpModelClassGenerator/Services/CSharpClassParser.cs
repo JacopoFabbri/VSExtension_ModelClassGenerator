@@ -30,6 +30,12 @@ namespace CSharpModelClassGenerator
                 if (!IsModelClass(node)) continue;
                 var classNode = new ClassNode { Name = node.Identifier.Text };
 
+                var namespaceNode = node.Ancestors().OfType<NamespaceDeclarationSyntax>().FirstOrDefault();
+                if (namespaceNode != null)
+                {
+                    classNode.Namespace = namespaceNode.Name.ToString();
+                }
+
                 foreach (var member in node.Members.OfType<PropertyDeclarationSyntax>())
                 {
                     classNode.Properties.Add(new PropertyNode
@@ -51,6 +57,12 @@ namespace CSharpModelClassGenerator
                     IsEnum = true
                 };
 
+                var namespaceNode = node.Ancestors().OfType<NamespaceDeclarationSyntax>().FirstOrDefault();
+                if (namespaceNode != null)
+                {
+                    enumNode.Namespace = namespaceNode.Name.ToString();
+                }
+
                 foreach (var member in node.Members)
                 {
                     enumNode.EnumValues.Add(member.Identifier.Text);
@@ -59,7 +71,6 @@ namespace CSharpModelClassGenerator
                 classNodes[enumNode.Name] = enumNode;
             }
         }
-
 
         private bool IsModelClass(ClassDeclarationSyntax classDeclaration)
         {
