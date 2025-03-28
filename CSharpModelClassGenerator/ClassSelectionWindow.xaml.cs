@@ -10,11 +10,15 @@ namespace CSharpModelClassGenerator
     public partial class ClassSelectionWindow : Window
     {
         public string SelectedClass { get; private set; }
+        private List<string> _classNames;
+        private List<string> _filteredClassNames;
 
         public ClassSelectionWindow(List<string> classNames)
         {
             InitializeComponent();
-            ClassList.ItemsSource = classNames.OrderBy(x => x);
+            _classNames = classNames.OrderBy(x => x).ToList();
+            _filteredClassNames = new List<string>(_classNames);
+            ClassList.ItemsSource = _filteredClassNames;
         }
 
         private void OnSelectClick(object sender, RoutedEventArgs e)
@@ -24,6 +28,13 @@ namespace CSharpModelClassGenerator
                 SelectedClass = ClassList.SelectedItem.ToString();
                 DialogResult = true;
             }
+        }
+
+        private void OnSearchTextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            string searchText = SearchTextBox.Text.ToLower();
+            _filteredClassNames = _classNames.Where(className => className.ToLower().Contains(searchText)).ToList();
+            ClassList.ItemsSource = _filteredClassNames;
         }
     }
 }
