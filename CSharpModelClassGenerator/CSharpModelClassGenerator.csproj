@@ -48,8 +48,10 @@
     <Compile Include="ClassSelectionWindow.xaml.cs">
       <DependentUpon>ClassSelectionWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CSharpClassGenerator.cs" />
-    <Compile Include="CSharpClassParser.cs" />
+    <Compile Include="Models\ClassNode.cs" />
+    <Compile Include="Models\PropertyNode.cs" />
+    <Compile Include="Services\CSharpClassGenerator.cs" />
+    <Compile Include="Services\CSharpClassParser.cs" />
     <Compile Include="CSharpModelClassCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CSharpModelClassGeneratorPackage.cs" />
