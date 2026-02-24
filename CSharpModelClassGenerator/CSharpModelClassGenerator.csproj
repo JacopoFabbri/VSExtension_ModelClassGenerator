@@ -75,6 +75,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="envdte80">
+      <Version>17.0.32112.339</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp">
       <Version>3.8.0</Version>
     </PackageReference>
